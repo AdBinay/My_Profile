@@ -1,0 +1,142 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="hero" style="background-color: #0f0725;">
+    <div class="hero--content">
+        <div class="hero--content--intro">
+            <img id="profile_pic" src="{% static 'images/pp.jpg' %}">
+            <h1 class="intro--name">Binay <br> Adhikari</h1>
+        </div>
+
+        <div class="hero--content--subheadline">
+
+            <h3 class="description">FullStack Developer</h3>
+            <p class="slogan">Bachleor of Science in Computer Science and information Technology B.Sc CSIT at Tribhuvan University Institute of Science and Technology</p>
+            <p class="slogan">I teach people how to code and build cool things</p>
+        </div>
+    </div>
+
+</section>
+
+<section class="container section--2">
+
+    <h3>My Projects</h3>
+    <h5>Projects that makes my journey worthwhile</h5>
+    <div class="projects--wrapper">
+
+        {% for project in projects %}
+        <div class="project--column">
+            <a href="{% url 'project' project.id %}">
+                <img class="project--thumbnail" src="{{project.thumbnail.url}}">
+            </a>
+            <div class="project--body">
+                <h5>{{project.title}}</h5>
+            </div>
+        </div>
+        {% empty %}
+
+        <h3>There are no projects in the database...</h3 {% endfor %} </div>
+
+
+        <div class="about--wrapper">
+            <h3>More About Me</h3>
+
+            <p>I am an enthusiastic and motivated individual with a strong interest in technology and its applications.
+                 With a background in CS & IT, I have developed a solid foundation in various IT areas, including programming, database management, networking, and cybersecurity.
+                 Through my academic studies and practical experience,
+                 I have honed valuable problem-solving, critical thinking, 
+                 and teamwork skills.
+                </P> 
+                <P> I am driven by a passion for continuous learning and strive for excellence in all that I do. With my proactive attitude and dedication to success,
+                 I am eager to contribute to the IT field and make a positive 
+                 impact in an organization.
+                 I thrive in dynamic and challenging environments, 
+                and I am ready to take on new opportunities.</p>
+  
+        </div>
+
+</section>
+
+<section class="section--1">
+    <div class="skills--container">
+        <h3>Skills</h3>
+
+        {% for skill in detailedSkills %}
+        <div class="skill--wrapper">
+            {% if skill.logo %}
+            <img class="skill--logo" src="{{skill.logo.url}}">
+            {% endif %}
+            <div>
+                <h5>{{skill.title}}</h5>
+                <p>{{skill.body}}</p>
+            </div>
+
+        </div>
+        {% endfor %}
+
+
+        <h4>Other Skills</h4>
+        <div class="other--skills--wrapper">
+            {% for skill in skills %}
+            <div class="skill--tag">
+                <span>{{skill.title}}</span>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+</section>
+
+
+<section class="section--2">
+    <div class="skills--container">
+        <h3>Endorsements</h3>
+        <a class="btn btn-primary my-3" href="{% url 'add-endorsement' %}">Add Endorsement</a>
+
+        {% for i in endorsements %}
+        <div style="margin-bottom: 1em;" class="card">
+            <div class="card-body">
+                <h5>{{i.name}}</h5>
+                <p>{{i.body}}</p>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+</section>
+
+<section class="section--1">
+    <div class="container">
+        <form class="contact--form" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">{{field.label}}</label>
+                {{field}}
+            </div>
+
+            {% endfor %}
+
+            <input class="btn btn-primary" type="submit" value="submit">
+        </form>
+    </div>
+</section>
+
+
+<section>
+    <div  style="background-color: #ffffff;" >
+        <h3>Visit Me </h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14474.14244982543!2d83.97388619318467!3d28.22179848142449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995943f649d200b%3A0x4ee44c3d0bca654e!2sMount%20Annapurna%20Campus!5e0!3m2!1sen!2snp!4v1684026850137!5m2!1sen!2snp" width="1850" height="420.6" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section> 
+    
+
+{% endblock content %}

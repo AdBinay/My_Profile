@@ -1,0 +1,32 @@
+<section class="navigation-bar" style="background-color: #7a1616;">
+    <a class="nav-link" href="{% url 'home' %}">
+        Projects
+    </a>
+
+
+    <a class="nav-link" href="#">
+        Contact
+    </a>
+
+    <!-- <a class="nav-link" href="{% url 'chart' %}">
+        Vote
+    </a> -->
+
+    <a class="btn btn-light btn-sm" href="{% url 'donation' %}">
+        Payment
+    </a>
+
+    {% if request.user.is_authenticated %}
+    <a class="nav-link" href="{% url 'inbox' %}">
+        Inbox
+    </a>
+    <a class="nav-link" href="{% url 'add-project' %}">
+        Add Project
+    </a>
+    <a class="nav-link" href="{% url 'add-skill' %}">
+        Add Skill
+    </a>
+
+
+    {% endif %}
+</section>
